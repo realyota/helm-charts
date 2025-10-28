@@ -401,16 +401,41 @@
           "type": "string",
           "description": "Override the namespace used to install the Altinity Operator subchart."
         },
-        "rbacNamespaceScoped": {
-          "type": "boolean",
-          "description": "Scope Altinity Operator RBAC resources to the overridden namespace."
+        "rbac": {
+          "type": "object",
+          "properties": {
+            "namespaceScoped": {
+              "type": "boolean",
+              "description": "Scope Altinity Operator RBAC resources to the overridden namespace."
+            }
+          }
         },
-        "watchedNamespaces": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Namespaces watched by the Altinity Operator for ClickHouse installations."
+        "configs": {
+          "type": "object",
+          "properties": {
+            "files": {
+              "type": "object",
+              "properties": {
+                "config.yaml": {
+                  "type": "object",
+                  "properties": {
+                    "watch": {
+                      "type": "object",
+                      "properties": {
+                        "namespaces": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Namespaces watched by the Altinity Operator for ClickHouse installations."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
