@@ -61,7 +61,7 @@ Common examples include overriding the namespace where the operator runs, toggli
 namespace-scoped RBAC, and narrowing the list of watched namespaces:
 
 ```sh
-helm upgrade --install clickhouse . \
+helm install clickhouse . \
   --namespace test3 --create-namespace \
   --set operator.namespaceOverride=test3 \
   --set operator.rbac.namespaceScoped=true \
@@ -72,7 +72,7 @@ When you need the operator to watch multiple namespaces, provide additional entr
 `watch.namespaces` list:
 
 ```sh
-helm upgrade --install clickhouse . \
+helm install clickhouse . \
   --namespace test3 --create-namespace \
   --set operator.namespaceOverride=test3 \
   --set operator.rbac.namespaceScoped=true \
