@@ -397,10 +397,6 @@
           "type": "boolean",
           "description": "Enable Altinity Operator for ClickHouse."
         },
-        "namespaceOverride": {
-          "type": "string",
-          "description": "Namespace where the Altinity Operator subchart is installed. Automatically set to the Helm release namespace."
-        },
         "configs": {
           "type": "object",
           "properties": {
@@ -418,7 +414,7 @@
                           "items": {
                             "type": "string"
                           },
-                          "description": "Namespaces watched by the Altinity Operator for ClickHouse installations."
+                          "description": "Namespaces watched by the Altinity Operator for ClickHouse installations. Leave empty to default to the Helm release namespace."
                         }
                       }
                     }

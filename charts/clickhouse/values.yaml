@@ -214,13 +214,10 @@ operator:
   # -- Whether to enable the Altinity Operator for ClickHouse.
   # Disable if you already have the Operator installed cluster-wide.
   enabled: true
-  # -- Namespace where the Altinity Operator subchart is installed.
-  # This is automatically set to the Helm release namespace.
-  namespaceOverride: ""
   configs:
     files:
       config.yaml:
         watch:
           # -- List of namespaces for the operator to watch for ClickHouseInstallations.
-          # Leave empty to watch the operator's own namespace.
+          # Leave empty to watch the Helm release namespace by default.
           namespaces: []

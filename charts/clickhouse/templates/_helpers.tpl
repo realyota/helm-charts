@@ -254,6 +254,26 @@ Ensure the operator dependency installs into the parent release namespace.
 {{- define "clickhouse.operator.applyNamespaceOverride" -}}
 {{- if .Values.operator.enabled -}}
   {{- $_ := set .Values.operator "namespaceOverride" .Release.Namespace -}}
+  {{- if not (hasKey .Values.operator "configs") -}}
+    {{- $_ := set .Values.operator "configs" (dict) -}}
+  {{- end -}}
+  {{- $configs := index .Values.operator "configs" -}}
+  {{- if not (hasKey $configs "files") -}}
+    {{- $_ := set $configs "files" (dict) -}}
+  {{- end -}}
+  {{- $files := index $configs "files" -}}
+  {{- if not (hasKey $files "config.yaml") -}}
+    {{- $_ := set $files "config.yaml" (dict) -}}
+  {{- end -}}
+  {{- $config := index $files "config.yaml" -}}
+  {{- if not (hasKey $config "watch") -}}
+    {{- $_ := set $config "watch" (dict) -}}
+  {{- end -}}
+  {{- $watch := index $config "watch" -}}
+  {{- $namespaces := index $watch "namespaces" | default (list) -}}
+  {{- if or (not $namespaces) (eq (len $namespaces) 0) -}}
+    {{- $_ := set $watch "namespaces" (list .Release.Namespace) -}}
+  {{- end -}}
 {{- end -}}
 {{- "" -}}
 {{- end -}}
