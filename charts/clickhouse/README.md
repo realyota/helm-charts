@@ -62,10 +62,9 @@ namespace-scoped RBAC, and narrowing the list of watched namespaces:
 
 ```sh
 helm install clickhouse . \
-  --namespace test3 --create-namespace \
-  --set operator.namespaceOverride=test3 \
-  --set operator.rbac.namespaceScoped=true \
-  --set operator.configs.files.config\.yaml.watch.namespaces[0]=test3
+  --namespace test --create-namespace \
+  --set operator.namespaceOverride=test \
+  --set operator.rbac.namespaceScoped=true
 ```
 
 When you need the operator to watch multiple namespaces, provide additional entries in the
