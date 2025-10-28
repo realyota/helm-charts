@@ -55,7 +55,9 @@ helm install release-name altinity/clickhouse --namespace clickhouse \
 The ClickHouse chart vendors the Altinity ClickHouse Operator as a dependency using the
 `operator` alias. Any values you pass under the `operator` key are forwarded to the
 dependency chart unchanged, which means you can configure the operator exactly the same
-way you would when installing it directly.
+way you would when installing it directly. By default the dependency installs into the
+same namespace as the Helm release, watches all namespaces, and creates cluster-scoped
+RBAC resources.
 
 Common examples include overriding the namespace where the operator runs, toggling
 namespace-scoped RBAC, and narrowing the list of watched namespaces:
