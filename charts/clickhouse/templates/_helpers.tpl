@@ -247,3 +247,13 @@ Create the name of the service account to use
 {{- default "default" .Values.clickhouse.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Ensure the operator dependency installs into the parent release namespace.
+*/}}
+{{- define "clickhouse.operator.applyNamespaceOverride" -}}
+{{- if .Values.operator.enabled -}}
+  {{- $_ := set .Values.operator "namespaceOverride" .Release.Namespace -}}
+{{- end -}}
+{{- "" -}}
+{{- end -}}

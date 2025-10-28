@@ -399,7 +399,7 @@
         },
         "namespaceOverride": {
           "type": "string",
-          "description": "Override the namespace used to install the Altinity Operator subchart."
+          "description": "Namespace where the Altinity Operator subchart is installed. Automatically set to the Helm release namespace."
         },
         "configs": {
           "type": "object",

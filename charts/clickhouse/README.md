@@ -221,5 +221,5 @@ EOSQL
 | keeper.volumeClaimAnnotations | object | `{}` |  |
 | keeper.zoneSpread | bool | `false` |  |
 | operator.enabled | bool | `true` | Whether to enable the Altinity Operator for ClickHouse. Disable if you already have the Operator installed cluster-wide. |
-| operator.namespaceOverride | string | `""` | Namespace where the Altinity Operator subchart should be installed. Defaults to the release namespace. |
+| operator.namespaceOverride | string | `""` | Namespace where the Altinity Operator subchart is installed. Automatically set to the Helm release namespace. |
 | operator.configs.files.config.yaml.watch.namespaces | list | `[]` | List of namespaces watched by the Altinity Operator. Leave empty to watch the operator namespace. |
