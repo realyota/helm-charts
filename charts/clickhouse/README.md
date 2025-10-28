@@ -65,7 +65,7 @@ helm install clickhouse . \
   --namespace test3 --create-namespace \
   --set operator.namespaceOverride=test3 \
   --set operator.rbac.namespaceScoped=true \
-  --set operator.configs.files.config\\.yaml.watch.namespaces[0]=test3
+  --set operator.configs.files.config\.yaml.watch.namespaces[0]=test3
 ```
 
 When you need the operator to watch multiple namespaces, provide additional entries in the
@@ -76,7 +76,7 @@ helm install clickhouse . \
   --namespace test3 --create-namespace \
   --set operator.namespaceOverride=test3 \
   --set operator.rbac.namespaceScoped=true \
-  --set operator.configs.files.config\\.yaml.watch.namespaces={test3,other-namespace}
+  --set operator.configs.files.config\.yaml.watch.namespaces=\{test3,other-namespace\}
 ```
 
 Consult the [Altinity ClickHouse Operator chart documentation](https://helm.altinity.com/)
