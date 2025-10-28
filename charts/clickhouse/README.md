@@ -72,10 +72,10 @@ When you need the operator to watch multiple namespaces, provide additional entr
 
 ```sh
 helm install clickhouse . \
-  --namespace test3 --create-namespace \
-  --set operator.namespaceOverride=test3 \
+  --namespace test --create-namespace \
+  --set operator.namespaceOverride=test \
   --set operator.rbac.namespaceScoped=true \
-  --set operator.configs.files.config\.yaml.watch.namespaces=\{test3,other-namespace\}
+  --set operator.configs.files.config\.yaml.watch.namespaces=\{other-namespace,another-namespace\}
 ```
 
 Consult the [Altinity ClickHouse Operator chart documentation](https://helm.altinity.com/)
