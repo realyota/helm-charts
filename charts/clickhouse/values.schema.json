@@ -396,6 +396,21 @@
         "enabled": {
           "type": "boolean",
           "description": "Enable Altinity Operator for ClickHouse."
+        },
+        "namespaceOverride": {
+          "type": "string",
+          "description": "Override the namespace used to install the Altinity Operator subchart."
+        },
+        "rbacNamespaceScoped": {
+          "type": "boolean",
+          "description": "Scope Altinity Operator RBAC resources to the overridden namespace."
+        },
+        "watchedNamespaces": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Namespaces watched by the Altinity Operator for ClickHouse installations."
         }
       }
     }

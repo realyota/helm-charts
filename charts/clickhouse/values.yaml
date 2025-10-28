@@ -214,3 +214,12 @@ operator:
   # -- Whether to enable the Altinity Operator for ClickHouse.
   # Disable if you already have the Operator installed cluster-wide.
   enabled: true
+  # -- Override the namespace where the Altinity Operator subchart is installed.
+  # When empty, the release namespace is used.
+  namespaceOverride: ""
+  # -- Scope the operator RBAC resources to the namespace defined by `namespaceOverride`.
+  # Leave as `false` for cluster-wide RBAC resources.
+  rbacNamespaceScoped: false
+  # -- List of namespaces for the operator to watch for ClickHouseInstallations.
+  # Leave empty to watch the operator's own namespace.
+  watchedNamespaces: []
