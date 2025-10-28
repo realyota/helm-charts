@@ -390,7 +390,7 @@
         }
       }
     },
-    "altinity-clickhouse-operator": {
+    "operator": {
       "type": "object",
       "properties": {
         "enabled": {

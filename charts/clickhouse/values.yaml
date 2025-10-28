@@ -210,7 +210,7 @@ keeper:
     cpuLimitsMs: 3
     memoryLimitsMiB: 3Gi
 
-'altinity-clickhouse-operator':
+operator:
   # -- Whether to enable the Altinity Operator for ClickHouse.
   # Disable if you already have the Operator installed cluster-wide.
   enabled: true

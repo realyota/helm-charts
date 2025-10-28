@@ -45,7 +45,7 @@ helm repo add altinity https://helm.altinity.com
 
 # install the clickhouse chart without the operator
 helm install release-name altinity/clickhouse --namespace clickhouse \
---set altinity-clickhouse-operator.enabled=false
+--set operator.enabled=false
 ```
 
 > Yes, we're aware that the domains for the helm repos are a bit odd. We're working on it.
@@ -220,6 +220,6 @@ EOSQL
 | keeper.tolerations | list | `[]` |  |
 | keeper.volumeClaimAnnotations | object | `{}` |  |
 | keeper.zoneSpread | bool | `false` |  |
-| altinity-clickhouse-operator.enabled | bool | `true` | Whether to enable the Altinity Operator for ClickHouse. Disable if you already have the Operator installed cluster-wide. |
-| altinity-clickhouse-operator.namespaceOverride | string | `""` | Namespace where the Altinity Operator subchart should be installed. Defaults to the release namespace. |
-| altinity-clickhouse-operator.configs.files.config.yaml.watch.namespaces | list | `[]` | List of namespaces watched by the Altinity Operator. Leave empty to watch the operator namespace. |
+| operator.enabled | bool | `true` | Whether to enable the Altinity Operator for ClickHouse. Disable if you already have the Operator installed cluster-wide. |
+| operator.namespaceOverride | string | `""` | Namespace where the Altinity Operator subchart should be installed. Defaults to the release namespace. |
+| operator.configs.files.config.yaml.watch.namespaces | list | `[]` | List of namespaces watched by the Altinity Operator. Leave empty to watch the operator namespace. |
