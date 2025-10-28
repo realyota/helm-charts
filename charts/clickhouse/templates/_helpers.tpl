@@ -249,31 +249,23 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-Ensure the operator dependency installs into the parent release namespace.
+Override operator dependency values so it installs into the release namespace and defaults its
+watched namespaces accordingly.
 */}}
-{{- define "clickhouse.operator.applyNamespaceOverride" -}}
+{{- define "clickhouse.operator.overrides" -}}
 {{- if .Values.operator.enabled -}}
-  {{- $_ := set .Values.operator "namespaceOverride" .Release.Namespace -}}
-  {{- if not (hasKey .Values.operator "configs") -}}
-    {{- $_ := set .Values.operator "configs" (dict) -}}
-  {{- end -}}
-  {{- $configs := index .Values.operator "configs" -}}
-  {{- if not (hasKey $configs "files") -}}
-    {{- $_ := set $configs "files" (dict) -}}
-  {{- end -}}
-  {{- $files := index $configs "files" -}}
-  {{- if not (hasKey $files "config.yaml") -}}
-    {{- $_ := set $files "config.yaml" (dict) -}}
-  {{- end -}}
-  {{- $config := index $files "config.yaml" -}}
-  {{- if not (hasKey $config "watch") -}}
-    {{- $_ := set $config "watch" (dict) -}}
-  {{- end -}}
-  {{- $watch := index $config "watch" -}}
-  {{- $namespaces := index $watch "namespaces" | default (list) -}}
-  {{- if or (not $namespaces) (eq (len $namespaces) 0) -}}
-    {{- $_ := set $watch "namespaces" (list .Release.Namespace) -}}
-  {{- end -}}
+{{- $watch := (dig "configs" "files" "config.yaml" "watch" "namespaces" .Values.operator) | default (list) -}}
+operator:
+  namespaceOverride: {{ .Release.Namespace | quote }}
+  configs:
+    files:
+      config.yaml:
+        watch:
+          namespaces:
+{{- if or (not $watch) (eq (len $watch) 0) -}}
+            - {{ .Release.Namespace | quote }}
+{{- else -}}
+{{ toYaml $watch | nindent 12 }}
 {{- end -}}
-{{- "" -}}
+{{- end -}}
 {{- end -}}
