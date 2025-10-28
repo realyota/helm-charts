@@ -401,15 +401,6 @@
           "type": "string",
           "description": "Override the namespace used to install the Altinity Operator subchart."
         },
-        "rbac": {
-          "type": "object",
-          "properties": {
-            "namespaceScoped": {
-              "type": "boolean",
-              "description": "Scope Altinity Operator RBAC resources to the overridden namespace."
-            }
-          }
-        },
         "configs": {
           "type": "object",
           "properties": {

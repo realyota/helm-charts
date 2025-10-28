@@ -217,10 +217,6 @@ keeper:
   # -- Override the namespace where the Altinity Operator subchart is installed.
   # When empty, the release namespace is used.
   namespaceOverride: ""
-  rbac:
-    # -- Scope the operator RBAC resources to the namespace defined by `namespaceOverride`.
-    # Leave as `false` for cluster-wide RBAC resources.
-    namespaceScoped: false
   configs:
     files:
       config.yaml:

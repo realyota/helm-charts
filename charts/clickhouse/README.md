@@ -222,5 +222,4 @@ EOSQL
 | keeper.zoneSpread | bool | `false` |  |
 | altinity-clickhouse-operator.enabled | bool | `true` | Whether to enable the Altinity Operator for ClickHouse. Disable if you already have the Operator installed cluster-wide. |
 | altinity-clickhouse-operator.namespaceOverride | string | `""` | Namespace where the Altinity Operator subchart should be installed. Defaults to the release namespace. |
-| altinity-clickhouse-operator.rbac.namespaceScoped | bool | `false` | Scope the Altinity Operator RBAC resources to the namespace defined by `altinity-clickhouse-operator.namespaceOverride`. |
 | altinity-clickhouse-operator.configs.files.config.yaml.watch.namespaces | list | `[]` | List of namespaces watched by the Altinity Operator. Leave empty to watch the operator namespace. |
