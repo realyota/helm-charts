@@ -4,7 +4,8 @@
                   Thank you for using Altinity Helm Charts!
 ---------------------------------------------------------------------------------
 
-{{- if .Values.operator.enabled }}
+{{- $operator := index .Values "altinity-clickhouse-operator" -}}
+{{- if $operator.enabled }}
 
 The Altinity Operator for ClickHouse is being installed first.
 

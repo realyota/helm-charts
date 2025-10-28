@@ -9,5 +9,4 @@ dependencies:
   - name: altinity-clickhouse-operator
     repository: https://helm.altinity.com
     version: 0.25.4
-    alias: operator
-    condition: operator.enabled
+    condition: altinity-clickhouse-operator.enabled
