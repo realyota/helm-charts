@@ -214,10 +214,3 @@ operator:
   # -- Whether to enable the Altinity Operator for ClickHouse.
   # Disable if you already have the Operator installed cluster-wide.
   enabled: true
-  configs:
-    files:
-      config.yaml:
-        watch:
-          # -- List of namespaces for the operator to watch for ClickHouseInstallations.
-          # Leave empty to watch the Helm release namespace by default.
-          namespaces: []

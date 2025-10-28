@@ -1,5 +1,0 @@
-{{- $overrides := include "clickhouse.operator.overrides" . -}}
-{{- if $overrides -}}
-  {{- $_ := mergeOverwrite .Values ($overrides | fromYaml) -}}
-{{- end -}}
-{{- "" -}}

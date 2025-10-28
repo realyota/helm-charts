@@ -50,6 +50,39 @@ helm install release-name altinity/clickhouse --namespace clickhouse \
 
 > Yes, we're aware that the domains for the helm repos are a bit odd. We're working on it.
 
+### Configuring the bundled operator
+
+The ClickHouse chart vendors the Altinity ClickHouse Operator as a dependency using the
+`operator` alias. Any values you pass under the `operator` key are forwarded to the
+dependency chart unchanged, which means you can configure the operator exactly the same
+way you would when installing it directly.
+
+Common examples include overriding the namespace where the operator runs, toggling
+namespace-scoped RBAC, and narrowing the list of watched namespaces:
+
+```sh
+helm upgrade --install clickhouse . \
+  --namespace test3 --create-namespace \
+  --set operator.namespaceOverride=test3 \
+  --set operator.rbac.namespaceScoped=true \
+  --set operator.configs.files.config\\.yaml.watch.namespaces[0]=test3
+```
+
+When you need the operator to watch multiple namespaces, provide additional entries in the
+`watch.namespaces` list:
+
+```sh
+helm upgrade --install clickhouse . \
+  --namespace test3 --create-namespace \
+  --set operator.namespaceOverride=test3 \
+  --set operator.rbac.namespaceScoped=true \
+  --set operator.configs.files.config\\.yaml.watch.namespaces={test3,other-namespace}
+```
+
+Consult the [Altinity ClickHouse Operator chart documentation](https://helm.altinity.com/)
+for the full list of available options. Any of those settings can be applied through the
+`operator` value prefix when installing or upgrading this chart.
+
 ## Upgrading the Chart
 
 ### Upgrading from 0.2.x to 0.3.0
@@ -221,4 +254,3 @@ EOSQL
 | keeper.volumeClaimAnnotations | object | `{}` |  |
 | keeper.zoneSpread | bool | `false` |  |
 | operator.enabled | bool | `true` | Whether to enable the Altinity Operator for ClickHouse. Disable if you already have the Operator installed cluster-wide. |
-| operator.configs.files.config.yaml.watch.namespaces | list | `[]` | List of namespaces watched by the Altinity Operator. Leave empty to watch the Helm release namespace by default. |

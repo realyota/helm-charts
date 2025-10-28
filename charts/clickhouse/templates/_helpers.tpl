@@ -247,25 +247,3 @@ Create the name of the service account to use
 {{- default "default" .Values.clickhouse.serviceAccount.name }}
 {{- end }}
 {{- end }}
-
-{{/*
-Override operator dependency values so it installs into the release namespace and defaults its
-watched namespaces accordingly.
-*/}}
-{{- define "clickhouse.operator.overrides" -}}
-{{- if .Values.operator.enabled -}}
-{{- $watch := (dig "configs" "files" "config.yaml" "watch" "namespaces" .Values.operator) | default (list) -}}
-operator:
-  namespaceOverride: {{ .Release.Namespace | quote }}
-  configs:
-    files:
-      config.yaml:
-        watch:
-          namespaces:
-{{- if or (not $watch) (eq (len $watch) 0) -}}
-            - {{ .Release.Namespace | quote }}
-{{- else -}}
-{{ toYaml $watch | nindent 12 }}
-{{- end -}}
-{{- end -}}
-{{- end -}}
