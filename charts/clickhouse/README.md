@@ -59,25 +59,14 @@ way you would when installing it directly. By default the dependency installs in
 same namespace as the Helm release, watches all namespaces, and creates cluster-scoped
 RBAC resources.
 
-Common examples include overriding the namespace where the operator runs, toggling
-namespace-scoped RBAC, and narrowing the list of watched namespaces:
+Common examples include overriding the namespace where the operator runs and toggling
+namespace-scoped RBAC:
 
 ```sh
 helm install clickhouse . \
   --namespace test --create-namespace \
   --set operator.namespaceOverride=test \
   --set operator.rbac.namespaceScoped=true
-```
-
-When you need the operator to watch multiple namespaces, provide additional entries in the
-`watch.namespaces` list:
-
-```sh
-helm install clickhouse . \
-  --namespace test --create-namespace \
-  --set operator.namespaceOverride=test \
-  --set operator.rbac.namespaceScoped=true \
-  --set operator.configs.files.config\.yaml.watch.namespaces=\{other-namespace,another-namespace\}
 ```
 
 When you are running multiple operators across different namespaces, install a separate
