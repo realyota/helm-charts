@@ -80,6 +80,19 @@ helm install clickhouse . \
   --set operator.configs.files.config\.yaml.watch.namespaces=\{other-namespace,another-namespace\}
 ```
 
+When you are running multiple operators across different namespaces, install a separate
+release into each namespace and scope it to that namespace only. Set the operator's
+`namespaceOverride`, enable namespace-scoped RBAC, and restrict `watch.namespaces` to the
+release namespace so each operator manages only its own resources:
+
+```sh
+helm install clickhouse-team-a . \
+  --namespace team-a --create-namespace \
+  --set operator.namespaceOverride=team-a \
+  --set operator.rbac.namespaceScoped=true \
+  --set operator.configs.files.config\.yaml.watch.namespaces=\{team-a\}
+```
+
 Consult the [Altinity ClickHouse Operator chart documentation](https://helm.altinity.com/)
 for the full list of available options. Any of those settings can be applied through the
 `operator` value prefix when installing or upgrading this chart.
