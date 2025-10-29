@@ -63,7 +63,7 @@ Common examples include overriding the namespace where the operator runs and tog
 namespace-scoped RBAC:
 
 ```sh
-helm install clickhouse . \
+helm install release-name altinity/clickhouse \
   --namespace test --create-namespace \
   --set operator.namespaceOverride=test \
   --set operator.rbac.namespaceScoped=true
@@ -72,15 +72,7 @@ helm install clickhouse . \
 When you are running multiple operators across different namespaces, install a separate
 release into each namespace and scope it to that namespace only. Set the operator's
 `namespaceOverride`, enable namespace-scoped RBAC, and restrict `watch.namespaces` to the
-release namespace so each operator manages only its own resources:
-
-```sh
-helm install clickhouse-team-a . \
-  --namespace team-a --create-namespace \
-  --set operator.namespaceOverride=team-a \
-  --set operator.rbac.namespaceScoped=true \
-  --set operator.configs.files.config\.yaml.watch.namespaces=\{team-a\}
-```
+release namespace so each operator manages only its own resources.
 
 Consult the [Altinity ClickHouse Operator chart documentation](https://helm.altinity.com/)
 for the full list of available options. Any of those settings can be applied through the
