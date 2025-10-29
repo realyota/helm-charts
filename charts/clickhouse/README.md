@@ -74,6 +74,14 @@ release into each namespace and scope it to that namespace only. Set the operato
 `namespaceOverride`, enable namespace-scoped RBAC, and restrict `watch.namespaces` to the
 release namespace so each operator manages only its own resources.
 
+```sh
+helm install second-release altinity/clickhouse \
+  --namespace test \
+  --set operator.namespaceOverride=test \
+  --set operator.rbac.namespaceScoped=true \
+  --set operator.config\.yaml=\{\"watch\":\{\"namespaces\":[\"test\"]\}\}
+```
+
 Consult the [Altinity ClickHouse Operator chart documentation](https://helm.altinity.com/)
 for the full list of available options. Any of those settings can be applied through the
 `operator` value prefix when installing or upgrading this chart.
