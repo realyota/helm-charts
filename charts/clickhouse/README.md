@@ -79,7 +79,7 @@ helm install second-release altinity/clickhouse \
   --namespace test \
   --set operator.namespaceOverride=test \
   --set operator.rbac.namespaceScoped=true \
-  --set operator.config\.yaml=\{\"watch\":\{\"namespaces\":[\"test\"]\}\}
+  --set operator.configs.files.config\.yaml.watch.namespaces=\{test\}
 ```
 
 Consult the [Altinity ClickHouse Operator chart documentation](https://helm.altinity.com/)
