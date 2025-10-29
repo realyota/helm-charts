@@ -60,7 +60,7 @@ same namespace as the Helm release, watches all namespaces, and creates cluster-
 RBAC resources.
 
 Common examples include overriding the namespace where the operator runs and toggling
-namespace-scoped RBAC:
+`rbac.namespaceScoped`:
 
 ```sh
 helm install release-name altinity/clickhouse \
@@ -71,7 +71,7 @@ helm install release-name altinity/clickhouse \
 
 When you are running multiple operators across different namespaces, install a separate
 release into each namespace and scope it to that namespace only. Set the operator's
-`namespaceOverride`, enable namespace-scoped RBAC, and restrict `watch.namespaces` to the
+`namespaceOverride`, enable `rbac.namespaceScoped`, and restrict `watch.namespaces` to the
 release namespace so each operator manages only its own resources.
 
 ```sh
