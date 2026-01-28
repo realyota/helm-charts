@@ -4,6 +4,11 @@ import tempfile
 import os
 
 
+def _build_local_dependencies(chart_path):
+    # Ensure local chart dependencies are present for installs in tests.
+    run(cmd=f"helm dependency build {chart_path}")
+
+
 @TestStep(Given)
 def install_altinity(self, namespace, release_name, local=True):
     """Install ClickHouse Operator using Altinity Helm charts."""
@@ -11,6 +16,7 @@ def install_altinity(self, namespace, release_name, local=True):
     if local:
         # Use local chart from charts/clickhouse directory
         chart_path = os.path.join(os.getcwd(), "charts", "clickhouse")
+        _build_local_dependencies(chart_path)
         run(
             cmd=f"helm install {release_name} {chart_path} "
             f"--namespace {namespace} --create-namespace"
@@ -45,6 +51,7 @@ def install_with_values(self, namespace, release_name, values, expect_failure=Fa
         if local:
             # Use local chart from charts/clickhouse directory
             chart_path = os.path.join(os.getcwd(), "charts", "clickhouse")
+            _build_local_dependencies(chart_path)
             cmd = (
                 f"helm install {release_name} {chart_path} "
                 f"--namespace {namespace} --create-namespace "
